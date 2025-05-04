@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Форма звіту</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    label { display: block; margin-top: 10px; }
+    select, input[type="text"] { width: 200px; }
+    #output { margin-top: 20px; white-space: pre-wrap; border: 1px solid #ccc; padding: 10px; }
+    button { margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Форма звіту про повітряну ціль</h2>
+  <form id="reportForm">
+    <label>Тип цілі:
+      <select id="targetType">
+        <option value="БПЛА">БПЛА</option>
+        <option value="Ракета">Ракета</option>
+        <option value="Літак">Літак</option>
+      </select>
+    </label>
+    <label>Кількість:
+      <input type="text" id="quantity" placeholder="Напр. 2">
+    </label>
+    <label>Азимут:
+      <input type="text" id="azimuth" placeholder="Напр. 135°">
+    </label>
+    <label>Місцезнаходження:
+      <input type="text" id="location" placeholder="Напр. Київ">
+    </label>
+    <button type="button" onclick="generateMessage()">Згенерувати повідомлення</button>
+  </form>
+  <div id="output"></div>
+  <button onclick="copyToClipboard()">Скопіювати повідомлення</button>
+
+  <script>
+    function generateMessage() {
+      const type = document.getElementById('targetType').value;
+      const quantity = document.getElementById('quantity').value;
+      const azimuth = document.getElementById('azimuth').value;
+      const location = document.getElementById('location').value;
+
+      const message = `Ціль: ${type}
